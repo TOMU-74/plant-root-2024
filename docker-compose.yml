@@ -1,0 +1,13 @@
+version: '3'
+services:
+  jupyterlab:
+    build: .
+    ports:
+      - "8008:8008"
+    volumes:
+      - .:/work
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN
+    command: >
+      sh -c "jupyter lab --ip=0.0.0.0 --port 8008 --allow-root --NotebookApp.token=$$JUPYTER_TOKEN"
