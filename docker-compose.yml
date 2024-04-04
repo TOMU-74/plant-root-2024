@@ -1,13 +1,13 @@
 version: '3'
 services:
   jupyterlab:
-    build: .
+    build: . #同じ階層のドッカーファイルを使う
     ports:
       - "8008:8008"
-    volumes:
+    volumes: #今の階層:コンテナ内の階層で コンテナ内の変更を今のフォルダにも反映できる
       - .:/work
-    environment:
+    environment: 
       - JUPYTER_ENABLE_LAB=yes
       - JUPYTER_TOKEN
-    command: >
+    command: > 
       sh -c "jupyter lab --ip=0.0.0.0 --port 8008 --allow-root --NotebookApp.token=$$JUPYTER_TOKEN"
